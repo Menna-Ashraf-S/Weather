@@ -28,7 +28,9 @@ class Home  extends StatefulWidget {
 
 class _HomeState extends State < Home > {
 
-  DateTime dateTime = DateTime.now() ;
+  
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +43,17 @@ class _HomeState extends State < Home > {
           if (snapshot.hasData){
             double  ? x = snapshot.data!.listData!.first.mainWeather!.temp ;
             double temperature = (x! - 273.15) ;
-           // var y = snapshot.data!.listData!.where((element) => element.dt_txt!.startsWith(dateTime.year.toString()+'-'+dateTime.month.toString()+'-0'+(dateTime.day+1).toString()));
             print(snapshot.data) ;
-          
-            return 
+            return  Container(
+        width:double.infinity , height: double.infinity,
+        decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment(0, -1.0),
+          end: Alignment(0, 0),
+          colors: [  Color.fromARGB(255, 54, 139, 231) ,Color.fromARGB(255, 62, 103, 179),
+          Color.fromARGB(255, 63, 94, 197) ,
+          ],
+          ),
+          ),
+          child:
             Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,9 +68,9 @@ class _HomeState extends State < Home > {
                     ),
                     ),
 
-                   // Image.network('${snapshot.data!.listData!.first.weather}.png'),
+                    Image.network('http://openweathermap.org/img/wn/${snapshot.data!.listData!.first.weather!.first.icon}@2x.png'),
 
-                    SizedBox(height: 25,),
+                    SizedBox(height: 15,),
 
                     Text('${temperature.toStringAsFixed(1)}' ,
                     style: TextStyle(
@@ -75,20 +84,34 @@ class _HomeState extends State < Home > {
                     ),
                     ),
 
-
-                    SizedBox(height: 200,),
+    
+                      
+                     SizedBox(height: 150,),
                     Padding(
-                      padding: const EdgeInsets.only(left:10 ,right: 10),
-                      child: SizedBox( height: 100,
+                      padding: const EdgeInsets.only(left:3 ,right: 1),
+                      child: SizedBox( height: 200,
                         child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
                           itemCount: 5 ,
                           itemBuilder: ((context, index) {
                           return Row(
                             children: <Widget>[
                               Column(
                                 children: <Widget>[
-                                  Text('${snapshot.data!.listData!.first.weather}')
-                              //Text(DateFormat.E().format() ,
+                                 
+                               Text(DateFormat.E().format(DateTime.parse(snapshot.data!.listData!.elementAt(index*8).dt_txt.toString())),
+                               style: TextStyle(
+                                color: Colors.grey , fontSize: 15 , fontWeight: FontWeight.w500 ,
+                               ),) ,
+
+                               Image.network('http://openweathermap.org/img/wn/${snapshot.data!.listData!.elementAt(index*8).weather!.first.icon}@2x.png',height: 75 ,width: 75,),
+                                    
+                               Text('${((snapshot.data!.listData!.elementAt(index*8).mainWeather!.temp)!-273.15).round()}\u00B0',
+                               style: TextStyle(
+                                color: Colors.white , fontSize: 20 ,fontWeight: FontWeight.w500 ,
+                               ),)
+
+                              
                               ],),
                               
                             ],
@@ -98,7 +121,9 @@ class _HomeState extends State < Home > {
                       ),
                     )  ,  
 
-                ],),
+                ],
+                ),
+                )
                 );
           }
           else if (snapshot.hasError){
