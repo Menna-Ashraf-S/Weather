@@ -18,7 +18,7 @@ Wind ({this.speed , this.deg , this.gust});
     return Wind(
       speed: json['speed'].toDouble(),
       deg: json['deg'],
-      gust: json['gust'],
+      gust: json['gust'].toDouble(),
       
     );
    }

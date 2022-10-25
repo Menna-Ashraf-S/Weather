@@ -3,7 +3,6 @@ import 'package:flutter_pro/model/mainWeather.dart';
 import 'package:flutter_pro/model/sys.dart';
 import 'package:flutter_pro/model/weather.dart';
 import 'package:flutter_pro/model/wind.dart';
-import 'package:path/path.dart';
 
 class ListData {
 
