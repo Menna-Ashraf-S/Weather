@@ -38,7 +38,7 @@ class ListData {
 
    factory ListData.fromJson (Map<String , dynamic> json){
     return ListData(
-      dt: json['id'],
+      dt: json['dt'],
       mainWeather: MainWeather.fromJson(json['main']),
       weather: List<Weather>.from(json['weather'].map((x) => Weather.fromJson(x))),
       clouds: Clouds.fromJson(json['clouds']),

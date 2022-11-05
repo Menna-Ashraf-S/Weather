@@ -88,7 +88,7 @@ class _HomeState extends State < Home > {
                       
                      SizedBox(height: 150,),
                     Padding(
-                      padding: const EdgeInsets.only(left:3 ,right: 1),
+                      padding: const EdgeInsets.only(left:7 ,right: 1),
                       child: SizedBox( height: 200,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
